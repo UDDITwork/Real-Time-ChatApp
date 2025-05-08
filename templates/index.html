@@ -2,8 +2,15 @@
 <html>
 <head>
     <title>FastAPI WebSocket Chat</title>
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Log page load to help with debugging
+        console.log("Page loading...");
+        window.addEventListener('load', function() {
+            console.log("Page fully loaded");
+        });
+    </script>
 </head>
 <body>
     <div class="chat-container">
@@ -12,18 +19,32 @@
         <div class="username-container" id="usernameForm">
             <h2>Enter your username</h2>
             <input type="text" id="username" placeholder="Username" required>
-            <button onclick="joinChat()">Join Chat</button>
+            <button type="button" id="joinButton">Join Chat</button>
         </div>
         
         <div class="chat-interface" id="chatInterface" style="display: none;">
             <div class="messages" id="messages"></div>
             <div class="input-area">
                 <input type="text" id="messageText" placeholder="Type a message..." autocomplete="off">
-                <button onclick="sendMessage()">Send</button>
+                <button type="button" id="sendButton">Send</button>
             </div>
         </div>
     </div>
     
     <script src="{{ url_for('static', path='/js/chat.js') }}"></script>
+    <script>
+        // Additional inline script to ensure buttons work
+        document.addEventListener('DOMContentLoaded', function() {
+            // Join button
+            document.getElementById('joinButton').addEventListener('click', function() {
+                joinChat();
+            });
+            
+            // Send button
+            document.getElementById('sendButton').addEventListener('click', function() {
+                sendMessage();
+            });
+        });
+    </script>
 </body>
 </html>
