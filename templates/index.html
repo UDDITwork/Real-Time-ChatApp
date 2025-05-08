@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FastAPI WebSocket Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="chat-container">
+        <h1>Real-Time Chat</h1>
+        
+        <div class="username-container" id="usernameForm">
+            <h2>Enter your username</h2>
+            <input type="text" id="username" placeholder="Username" required>
+            <button onclick="joinChat()">Join Chat</button>
+        </div>
+        
+        <div class="chat-interface" id="chatInterface" style="display: none;">
+            <div class="messages" id="messages"></div>
+            <div class="input-area">
+                <input type="text" id="messageText" placeholder="Type a message..." autocomplete="off">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', path='/js/chat.js') }}"></script>
+</body>
+</html>
