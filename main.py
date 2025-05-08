@@ -118,8 +118,7 @@ if __name__ == "__main__":
     
     # Get port from environment variable for production, or use default for local
     port = int(os.environ.get("PORT", 8000))
-    host = os.environ.get("HOST", "127.0.0.1")
     
-    # Run the server
-    print(f"Server running! Open http://{host}:{port} in your browser")
-    uvicorn.run("main:app", host=host, port=port, reload=True)
+    # Run the server - IMPORTANT: Use 0.0.0.0 for Render.com
+    logger.info(f"Starting server on port {port}")
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False)

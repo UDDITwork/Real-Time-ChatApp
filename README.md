@@ -1,6 +1,6 @@
 # Real-Time Chat Application
 
-A simple but functional real-time chat application built with FastAPI and WebSockets.
+A simple real-time chat application built with FastAPI and WebSockets.
 
 ## Features
 
@@ -10,31 +10,51 @@ A simple but functional real-time chat application built with FastAPI and WebSoc
 - Automatic reconnection if connection is lost
 - Simple, clean UI
 
-## Technologies Used
+## Deployment to Render.com
 
-- **FastAPI**: Modern, high-performance web framework for building APIs
-- **WebSockets**: Protocol for real-time, two-way communication
-- **Uvicorn**: ASGI server for running the application
-- **Jinja2**: Template engine for rendering HTML
-- **JavaScript**: Client-side logic for WebSocket communication-chat.js application
+This application is designed to be easily deployed to Render.com:
+
+1. Push your code to a GitHub repository
+2. Sign up for Render.com
+3. Create a new Web Service
+4. Connect your GitHub repository
+5. Use these settings:
+   - Environment: Python 3
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+   - Select the free plan
+
+## Important Files
+
+- `main.py`: FastAPI application
+- `static/css/style.css`: Styling
+- `static/js/chat.js`: WebSocket client code
+- `templates/index.html`: HTML interface
+- `requirements.txt`: Dependencies
+- `Procfile`: Instructions for Render.com
 
 ## Local Development
 
-1. Clone this repository
-2. Install dependencies:
+1. Install dependencies:
    ```
    pip install -r requirements.txt
    ```
-3. Run the application:
+2. Run the application:
    ```
    python main.py
    ```
-4. Open your browser and navigate to http://localhost:8000
+3. Open your browser and navigate to http://localhost:8000
 
-## Deployment
+## Troubleshooting Render.com Deployment
 
-This application is ready to be deployed to cloud platforms like Render, Heroku, or Railway.
+If you encounter issues with your deployment:
 
-## License
-
-MIT
+1. Check that you're using port binding correctly:
+   - Make sure your app listens on `0.0.0.0` for the host
+   - Make sure your app uses the `$PORT` environment variable
+   
+2. WebSocket Connection Issues:
+   - Check that your JavaScript correctly handles both `ws://` and `wss://` protocols
+   - Make sure CORS middleware is enabled in your FastAPI app
+   
+3. Monitor the logs in the Render dashboard for error messages
